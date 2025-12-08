@@ -11,11 +11,7 @@
     body {
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background-image: url("assets/backgrounds/market.jpg");
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      background-color: #2c2115; /* Fallback color */
+      background: linear-gradient(135deg, #4b3621 0%, #2c1e12 100%);
       min-height: 100dvh;
       color: #fff;
       display: flex;
@@ -27,22 +23,23 @@
     /* --- CONTENEUR GLOBAL --- */
     #game {
       width: 100%;
-      max-width: 600px; /* Limite la largeur sur tablette/PC */
+      max-width: 600px;
       min-height: 100dvh;
       display: flex;
       flex-direction: column;
       position: relative;
-      background: linear-gradient(180deg, rgba(30, 20, 10, 0.85) 0%, rgba(10, 5, 0, 0.95) 100%);
-      backdrop-filter: blur(5px);
+      background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
+      background-size: 20px 20px;
     }
 
-    /* --- HEADER (Titre) --- */
+    /* --- HEADER --- */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 12px 16px 8px;
-      background: rgba(0,0,0,0.2);
+      background: rgba(0,0,0,0.3);
+      backdrop-filter: blur(5px);
     }
 
     .title-block h1 {
@@ -62,12 +59,13 @@
     }
 
     .tag {
-      font-size: 10px;
-      padding: 2px 8px;
-      border-radius: 10px;
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.2);
-      color: #ddd;
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 12px;
+      background: linear-gradient(90deg, #f5d58a, #d4a045);
+      color: #3b2b16;
+      font-weight: bold;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
     }
 
     /* --- TOP BAR (Stats) --- */
@@ -93,28 +91,16 @@
       gap: 12px;
     }
 
-    .stat-block {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .stat-label {
-      font-size: 10px;
-      text-transform: uppercase;
-      opacity: 0.6;
-      margin-bottom: 1px;
-    }
-
     .stat-value {
       font-weight: 700;
-      font-size: 15px;
+      font-size: 16px;
       color: #fff;
     }
 
     .hearts {
       display: flex;
-      gap: 2px;
-      font-size: 16px;
+      gap: 3px;
+      font-size: 18px;
     }
 
     /* TIMER */
@@ -149,24 +135,14 @@
       transition: width 0.2s linear;
     }
 
-    /* Masquer les stats "meta" sur mobile pour gagner de la place (visibles sur grand écran si besoin) */
-    .meta-small { display: none; } 
-
     /* --- LAYOUT PRINCIPAL --- */
     .layout {
       flex: 1;
       display: flex;
       flex-direction: column;
-      padding: 12px;
-      gap: 12px;
+      padding: 16px;
+      gap: 16px;
       overflow-y: auto;
-    }
-
-    .main-panel {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      height: 100%;
     }
 
     /* --- CLIENT + BULLE --- */
@@ -178,44 +154,45 @@
     }
 
     .client-avatar {
-      width: 64px;
-      height: 64px;
-      border-radius: 14px;
+      width: 68px;
+      height: 68px;
+      border-radius: 16px;
       background: radial-gradient(circle at 30% 20%, #ffe1b0, #c08a4c);
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
       flex-shrink: 0;
-      overflow: hidden;
       border: 2px solid rgba(255,255,255,0.1);
+      position: relative;
+      overflow: hidden;
     }
 
     .client-avatar-img { width: 100%; height: 100%; object-fit: cover; display: none; }
-    .client-avatar-emoji { font-size: 32px; }
+    .client-avatar-emoji { font-size: 40px; }
 
     .client-bubble {
       flex: 1;
-      background: #fdf6e3;
+      background: linear-gradient(180deg, #fffbf2 0%, #f7efdc 100%);
       color: #3e2b16;
-      padding: 12px;
+      padding: 14px;
       border-radius: 0 16px 16px 16px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
       position: relative;
     }
     
     .client-bubble::before {
       content: "";
       position: absolute;
-      left: -8px; top: 0;
+      left: -10px; top: 0;
       width: 0; height: 0;
-      border-top: 10px solid #fdf6e3;
-      border-left: 10px solid transparent;
+      border-top: 12px solid #fffbf2;
+      border-left: 12px solid transparent;
     }
 
     .client-name {
       font-weight: 800;
-      font-size: 14px;
+      font-size: 15px;
       color: #8a6a4b;
       margin-bottom: 4px;
     }
@@ -228,68 +205,71 @@
 
     /* --- LISTE DE COMMANDE --- */
     .bubble-order-title {
-      margin-top: 10px;
+      margin-top: 12px;
       font-weight: 700;
       font-size: 12px;
       text-transform: uppercase;
       color: #b27b3a;
       letter-spacing: 0.05em;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      padding-bottom: 4px;
+      margin-bottom: 8px;
     }
 
     .order-list {
       display: grid;
-      grid-template-columns: 1fr; /* Une seule colonne sur mobile pour la lisibilité */
+      grid-template-columns: 1fr;
       gap: 8px;
-      margin-top: 6px;
     }
 
     .order-item {
       display: flex;
       align-items: center;
       background: #fff;
-      padding: 8px;
+      padding: 8px 10px;
       border-radius: 10px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
       border: 1px solid rgba(0,0,0,0.05);
     }
 
     .product-icon-wrapper {
-      width: 42px;
-      height: 42px;
-      border-radius: 8px;
-      background: #eee;
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: #f0f0f0;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-right: 10px;
+      margin-right: 12px;
       flex-shrink: 0;
       overflow: hidden;
     }
 
     .product-icon { width: 38px; height: 38px; object-fit: contain; }
-    .emoji { font-size: 24px; }
+    .emoji { font-size: 26px; }
 
     .order-main { display: flex; flex-direction: column; justify-content: center; }
     .order-line-top { font-weight: 700; font-size: 14px; color: #222; }
     .order-line-bottom { font-size: 13px; color: #666; margin-top: 2px; }
 
-    /* --- ZONE DE CALCUL (Bas de l'écran) --- */
+    /* --- ZONE DE CALCUL --- */
     .question-box {
-      margin-top: auto; /* Pousse vers le bas */
-      background: #1e241e;
+      margin-top: auto; 
+      background: #1a1a1a;
       border-top: 1px solid rgba(255,255,255,0.15);
-      border-radius: 20px 20px 0 0;
-      padding: 16px;
-      box-shadow: 0 -4px 20px rgba(0,0,0,0.4);
+      border-radius: 24px 24px 0 0;
+      padding: 20px 16px 30px 16px;
+      box-shadow: 0 -4px 25px rgba(0,0,0,0.5);
     }
 
     .question-header {
       display: flex;
       align-items: center;
       gap: 8px;
-      margin-bottom: 8px;
+      margin-bottom: 12px;
       opacity: 0.8;
       font-size: 13px;
+      color: #aaa;
     }
 
     .calc-icon-wrapper {
@@ -298,21 +278,22 @@
       border-radius: 6px;
       display: flex; align-items: center; justify-content: center;
     }
-    .calc-icon { width: 20px; height: 20px; }
+    .calc-icon { width: 20px; height: 20px; filter: brightness(0) invert(1); }
 
     .question-text {
-      font-size: 16px;
+      font-size: 17px;
       font-weight: 600;
       line-height: 1.4;
-      margin-bottom: 12px;
-      min-height: 44px; /* Évite les sauts de hauteur */
+      margin-bottom: 16px;
+      min-height: 24px;
+      color: #fff;
     }
 
-    /* Change Summary Tiles */
+    /* Tuiles résumés */
     .change-summary {
       display: flex;
-      gap: 8px;
-      margin-bottom: 12px;
+      gap: 10px;
+      margin-bottom: 16px;
     }
 
     .change-tile {
@@ -323,137 +304,191 @@
       padding: 10px;
       text-align: center;
     }
-    
-    .change-tile .label { font-size: 11px; opacity: 0.7; margin-bottom: 4px; }
-    .change-tile .value { font-size: 16px; font-weight: 700; color: #f5d58a; }
+    .change-tile .label { font-size: 11px; opacity: 0.7; margin-bottom: 4px; text-transform: uppercase; }
+    .change-tile .value { font-size: 18px; font-weight: 700; color: #f5d58a; }
 
     /* Boutons de réponse (QCM) */
     .propositions {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
+      grid-template-columns: 1fr 1fr; /* 2 colonnes par défaut */
+      gap: 12px;
       margin-top: 8px;
     }
 
+    /* Boutons */
     .btn {
       border: none;
-      border-radius: 12px;
-      padding: 14px 20px; /* Touch target size */
-      font-size: 16px;
+      border-radius: 14px;
+      padding: 16px;
+      font-size: 18px;
       font-weight: 700;
       cursor: pointer;
       background: linear-gradient(135deg, #f9d779, #f3b45c);
       color: #3b2b16;
       box-shadow: 0 4px 0 #b27b3a;
-      transition: all 0.1s;
+      transition: transform 0.1s;
       width: 100%;
       text-align: center;
       user-select: none;
     }
-
-    .btn:active {
-      transform: translateY(2px);
-      box-shadow: 0 2px 0 #b27b3a;
-    }
+    .btn:active { transform: translateY(2px); box-shadow: 0 2px 0 #b27b3a; }
 
     .btn-secondary {
-      background: #3f4637;
+      background: #333a33;
       color: #e8f5e9;
-      box-shadow: 0 4px 0 #282e22;
-      font-family: monospace; /* Style calculatrice */
-      font-size: 18px;
+      box-shadow: 0 4px 0 #1e241e;
+      font-family: monospace; 
+      font-size: 20px;
     }
-    .btn-secondary:active { box-shadow: 0 2px 0 #282e22; }
-
-    /* Input Clavier */
-    .input-row {
-      display: flex;
-      gap: 8px;
-      margin-top: 8px;
+    .btn-secondary:active { box-shadow: 0 2px 0 #1e241e; }
+    
+    .btn-stop {
+      background: linear-gradient(135deg, #ff6c6c, #d32f2f);
+      color: white;
+      box-shadow: 0 4px 0 #8c1b1b;
+      margin-top: 10px;
+      font-size: 15px;
+      padding: 12px;
     }
+    .btn-stop:active { box-shadow: 0 2px 0 #8c1b1b; }
 
-    input[type="number"], input[type="text"] {
-      flex: 1;
-      padding: 12px 16px;
-      border-radius: 12px;
-      border: 2px solid #555;
-      background: #fff;
-      color: #000;
-      font-size: 18px; /* >16px évite le zoom auto sur iOS */
-      outline: none;
+    /* === NOUVEAU STYLE INPUT 5 CASES === */
+    .digit-inputs-container {
+        display: flex;
+        justify-content: center;
+        gap: 6px;
+        margin-top: 8px;
+        margin-bottom: 8px;
+        align-items: flex-end;
     }
     
-    input:focus { border-color: #f5d58a; }
+    .digit-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .digit-label {
+        font-size: 10px;
+        color: #aaa;
+        margin-bottom: 4px;
+        text-transform: uppercase;
+    }
 
+    .digit-input {
+        width: 44px;
+        height: 54px;
+        border-radius: 10px;
+        border: 2px solid #555;
+        background: #fff;
+        color: #000;
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+        outline: none;
+        -webkit-appearance: none;
+        padding: 0;
+    }
+    .digit-input:focus {
+        border-color: #f5d58a;
+        background: #fffce0;
+    }
+    
+    .decimal-point {
+        font-size: 32px;
+        font-weight: bold;
+        color: #f5d58a;
+        padding-bottom: 10px;
+    }
+
+    /* Feedback */
     .feedback {
-      margin-top: 10px;
-      font-size: 14px;
+      margin-top: 12px;
+      font-size: 15px;
       font-weight: 600;
       text-align: center;
-      min-height: 20px;
+      min-height: 24px;
     }
     .feedback.ok { color: #81c784; }
     .feedback.err { color: #e57373; }
 
-    /* --- OVERLAYS (Menus) --- */
+    /* --- OVERLAYS --- */
     .overlay {
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.85);
-      backdrop-filter: blur(8px);
+      background: rgba(0,0,0,0.92);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       display: flex;
       justify-content: center;
       align-items: center;
       z-index: 100;
-      padding: 20px;
+      padding: 24px;
+      overflow-y: auto;
     }
 
     .overlay-card {
       background: #2a1f16;
       border: 1px solid #5d4026;
-      border-radius: 24px;
-      padding: 30px 24px;
+      border-radius: 28px;
+      padding: 24px;
       width: 100%;
-      max-width: 360px;
+      max-width: 380px;
       text-align: center;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.9);
+      max-height: 90vh;
+      overflow-y: auto;
     }
 
-    .overlay-card h1, .overlay-card h2 {
-      color: #f5d58a;
-      margin-bottom: 10px;
+    .overlay-card h2 { color: #f5d58a; margin-bottom: 6px; font-size: 24px; }
+    
+    /* Next Client Preview */
+    .next-client-preview {
+        background: rgba(255,255,255,0.05);
+        border-radius: 16px;
+        padding: 12px;
+        margin-top: 16px;
+        margin-bottom: 16px;
+        text-align: left;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        border: 1px dashed rgba(255,255,255,0.2);
     }
     
-    .overlay-card p {
-      color: #ccc;
-      font-size: 15px;
-      line-height: 1.5;
-      margin-bottom: 20px;
-    }
+    .next-client-emoji { font-size: 32px; }
+    .next-client-info { display: flex; flex-direction: column; }
+    .next-client-label { font-size: 10px; text-transform: uppercase; opacity: 0.6; }
+    .next-client-name { font-weight: bold; color: #f5d58a; font-size: 14px; }
+    .next-client-trait { font-size: 12px; font-style: italic; opacity: 0.8; }
 
     .menu-best {
       background: rgba(255,255,255,0.05);
-      padding: 12px;
-      border-radius: 12px;
+      padding: 16px;
+      border-radius: 16px;
       margin: 0 auto 24px;
       display: inline-block;
       width: 100%;
+      border: 1px solid rgba(255,255,255,0.1);
     }
-    .menu-best-value { font-size: 24px; color: #fff; margin-top: 4px; }
+    .menu-best-value { font-size: 28px; font-weight:800; color: #fff; margin-top: 6px; }
 
     .stats-row {
       display: flex;
       justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 20px;
+      gap: 12px;
+      margin-bottom: 12px;
       background: rgba(0,0,0,0.2);
-      padding: 10px;
-      border-radius: 12px;
+      padding: 12px;
+      border-radius: 14px;
     }
+
+    .stat-mini-label { font-size: 10px; opacity: 0.6; text-transform: uppercase; }
+    .stat-mini-val { font-size: 15px; font-weight: bold; color: #fff; }
 
     .order-diff {
       display: inline-block;
-      margin: 10px 0 20px;
+      margin: 8px 0 16px;
       padding: 6px 12px;
       border-radius: 20px;
       font-weight: bold;
@@ -475,15 +510,28 @@
     }
     .xp-track {
         flex: 1;
-        height: 4px;
+        height: 6px;
         background: rgba(255,255,255,0.1);
-        border-radius: 2px;
+        border-radius: 3px;
         overflow: hidden;
     }
     .xp-fill {
         height: 100%;
         background: #ba68c8;
         transition: width 0.3s;
+        box-shadow: 0 0 10px #ba68c8;
+    }
+    
+    .level-up-badge {
+        background: #ba68c8;
+        color: white;
+        padding: 4px 12px;
+        border-radius: 99px;
+        font-weight: bold;
+        font-size: 12px;
+        display: none; /* Hidden by default */
+        margin-bottom: 10px;
+        box-shadow: 0 0 10px rgba(186, 104, 200, 0.5);
     }
 
   </style>
@@ -528,7 +576,6 @@
   </div>
 
   <div class="layout">
-    
     <div class="client-box">
       <div class="client-avatar">
         <img id="ui-client-avatar-img" class="client-avatar-img" src="" alt="Client" />
@@ -536,94 +583,119 @@
       </div>
       <div class="client-bubble">
         <div class="client-name" id="ui-client-name">Client</div>
-        <div class="client-text" id="ui-client-text">
-          Chargement...
-        </div>
+        <div class="client-text" id="ui-client-text">Chargement...</div>
         <div class="bubble-order-title">Sa Commande</div>
-        <div class="order-list" id="ui-order-list">
-            </div>
+        <div class="order-list" id="ui-order-list"></div>
       </div>
     </div>
+  </div>
 
-  </div> <div class="question-box">
+  <div class="question-box">
     <div class="question-header">
       <div class="calc-icon-wrapper">
         <span id="ui-calc-emoji">🧮</span>
-        <img id="ui-calc-img" src="assets/ui/calculator.png" alt="" class="calc-icon" style="display:none" />
+        <img id="ui-calc-img" src="assets/ui/calculator.png" alt="" class="calc-icon" />
       </div>
-      <span>Caisse</span>
+      <span>Caisse Enregistreuse</span>
     </div>
 
-    <div class="question-text" id="ui-question-text">
-      Prêt à jouer ?
-    </div>
-    
+    <div class="question-text" id="ui-question-text">Prêt à jouer ?</div>
     <div class="change-summary" id="ui-change-summary"></div>
     
     <div class="propositions" id="ui-propositions"></div>
     
-    <div class="input-row" id="ui-input-row" style="display:none;">
-      <input type="number" id="ui-answer-input" step="0.01" placeholder="Prix..." inputmode="decimal" />
-      <button class="btn" id="ui-answer-btn" style="width:auto;">OK</button>
+    <div class="digit-inputs-container" id="ui-digit-inputs" style="display:none;">
+        <div class="digit-group">
+            <span class="digit-label">100</span>
+            <input type="number" class="digit-input" id="d-100" min="0" max="9" value="0" onclick="this.select()">
+        </div>
+        <div class="digit-group">
+            <span class="digit-label">10</span>
+            <input type="number" class="digit-input" id="d-10" min="0" max="9" value="0" onclick="this.select()">
+        </div>
+        <div class="digit-group">
+            <span class="digit-label">1</span>
+            <input type="number" class="digit-input" id="d-1" min="0" max="9" value="0" onclick="this.select()">
+        </div>
+        <div class="decimal-point">,</div>
+        <div class="digit-group">
+            <span class="digit-label">0,1</span>
+            <input type="number" class="digit-input" id="d-01" min="0" max="9" value="0" onclick="this.select()">
+        </div>
+        <div class="digit-group">
+            <span class="digit-label">0,01</span>
+            <input type="number" class="digit-input" id="d-001" min="0" max="9" value="0" onclick="this.select()">
+        </div>
+        <button class="btn" id="ui-digit-ok-btn" style="width:auto; margin-left:8px; padding: 0 20px;">OK</button>
     </div>
-    
+
     <div class="feedback" id="ui-feedback"></div>
   </div>
 
   <div class="overlay" id="overlay-start">
     <div class="overlay-card">
-      <img src="assets/ui/logo.png" alt="🍎" style="width:60px; height:60px; margin-bottom:10px;" />
+      <img src="assets/ui/logo.png" alt="🍎" style="width:60px; height:60px; margin-bottom:10px; object-fit:contain;" onerror="this.style.display='none'" />
       <h1>Marché Bio</h1>
       <p>Additionne les tickets et rends la monnaie avant que le client ne s'impatiente !</p>
-
       <div class="menu-best">
         <div style="font-size:12px; opacity:0.7;">MEILLEUR SCORE</div>
         <div class="menu-best-value" id="start-best-score">0,00 €</div>
       </div>
-
       <button class="btn" id="btn-start">COMMENCER</button>
     </div>
   </div>
 
   <div class="overlay" id="overlay-order" style="display:none;">
     <div class="overlay-card">
+      <div class="level-up-badge" id="order-levelup-badge">NIVEAU SUIVANT ! ⬆️</div>
       <h2 id="order-result-status">Terminé</h2>
+      
+      <p id="order-result-phrase" style="font-style:italic; font-size:14px; opacity:0.8; margin-bottom:12px;">...</p>
       
       <div class="stats-row">
         <div>
-          <div style="font-size:11px; opacity:0.6;">TOTAL</div>
-          <div class="value" id="order-result-total">0 €</div>
+          <div class="stat-mini-label">RENDU</div>
+          <div class="stat-mini-val" id="order-result-change" style="color:#f5d58a;">0 €</div>
         </div>
         <div>
-          <div style="font-size:11px; opacity:0.6;">DONNÉ</div>
-          <div class="value" id="order-result-given">0 €</div>
+          <div class="stat-mini-label">TEMPS</div>
+          <div class="stat-mini-val" id="order-result-time">0s</div>
         </div>
         <div>
-          <div style="font-size:11px; opacity:0.6;">RENDU</div>
-          <div class="value" id="order-result-change" style="color:#f5d58a;">0 €</div>
+          <div class="stat-mini-label">PROGRESSION</div>
+          <div class="stat-mini-val" id="order-result-progress">1/10</div>
         </div>
       </div>
 
       <div id="order-result-diff" class="order-diff neutral">OK</div>
-      <p id="order-result-phrase" style="font-style:italic; font-size:14px; opacity:0.8;">...</p>
       
+      <div class="next-client-preview">
+        <div class="next-client-emoji" id="next-client-emoji">🤔</div>
+        <div class="next-client-info">
+            <span class="next-client-label">Prochain Client</span>
+            <span class="next-client-name" id="next-client-name">???</span>
+            <span class="next-client-trait" id="next-client-trait">Trait de caractère</span>
+        </div>
+      </div>
+
       <button class="btn" id="btn-next-order">SUIVANT ➔</button>
+      <button class="btn btn-stop" id="btn-stop-game">ARRÊTER LA PARTIE</button>
     </div>
   </div>
 
   <div class="overlay" id="overlay-end" style="display:none;">
     <div class="overlay-card">
       <h2>Partie Terminée</h2>
-      <p>Le client est parti fâché...</p>
+      <p>Le client est parti fâché... Essaye encore !</p>
       
       <div class="stats-row">
         <div>
-          <div style="font-size:11px; opacity:0.6;">ARGENT</div>
-          <div class="value" id="end-money">0 €</div>
+          <div class="stat-mini-label">ARGENT</div>
+          <div class="stat-mini-val" id="end-money">0 €</div>
         </div>
         <div>
-          <div style="font-size:11px; opacity:0.6;">NIVEAU</div>
-          <div class="value" id="end-level">1</div>
+          <div class="stat-mini-label">NIVEAU</div>
+          <div class="stat-mini-val" id="end-level">1</div>
         </div>
       </div>
 
@@ -640,89 +712,35 @@
 <script>
   // --- Données produits ---
   const BASE_PRODUCTS = [
-    { id: "pommes",     name: "Pommes",        type: "Fruit",   emoji: "🍎", basePriceKg: 3.5 },
-    { id: "poires",     name: "Poires",        type: "Fruit",   emoji: "🍐", basePriceKg: 3.8 },
-    { id: "prunes",     name: "Prunes",        type: "Fruit",   emoji: "🍑", basePriceKg: 4.2 },
-    { id: "abricots",   name: "Abricots",      type: "Fruit",   emoji: "🍑", basePriceKg: 5.5 },
-    { id: "cerises",    name: "Cerises",       type: "Fruit",   emoji: "🍒", basePriceKg: 7.5 },
-    { id: "raisin",     name: "Raisin",        type: "Fruit",   emoji: "🍇", basePriceKg: 4.8 },
-    { id: "fraises",    name: "Fraises",       type: "Fruit",   emoji: "🍓", basePriceKg: 7.0 },
-    { id: "framboises", name: "Framboises",    type: "Fruit",   emoji: "🫐", basePriceKg: 12.0 },
-    { id: "mirabelles", name: "Mirabelles",    type: "Fruit",   emoji: "🍑", basePriceKg: 6.5 },
-    { id: "kiwis",      name: "Kiwis",         type: "Fruit",   emoji: "🥝", basePriceKg: 4.5 },
-    { id: "carottes",   name: "Carottes",      type: "Légume",  emoji: "🥕", basePriceKg: 2.8 },
-    { id: "pommesTerre",name: "Pommes de terre", type: "Légume",emoji: "🥔", basePriceKg: 2.5 },
-    { id: "poireaux",   name: "Poireaux",      type: "Légume",  emoji: "🧅", basePriceKg: 3.2 },
-    { id: "courgettes", name: "Courgettes",    type: "Légume",  emoji: "🥒", basePriceKg: 3.0 },
-    { id: "tomates",    name: "Tomates",       type: "Légume",  emoji: "🍅", basePriceKg: 4.0 },
-    { id: "oignons",    name: "Oignons jaunes",type: "Légume",  emoji: "🧅", basePriceKg: 2.4 },
-    { id: "chou",       name: "Chou vert",     type: "Légume",  emoji: "🥬", basePriceKg: 2.6 },
-    { id: "brocoli",    name: "Brocoli",       type: "Légume",  emoji: "🥦", basePriceKg: 4.0 },
-    { id: "aubergines", name: "Aubergines",    type: "Légume",  emoji: "🍆", basePriceKg: 3.6 },
-    { id: "radis",      name: "Radis",         type: "Légume",  emoji: "🥗", basePriceKg: 3.0 },
+    { id: "pommes",     name: "Pommes",        emoji: "🍎", basePriceKg: 3.5 },
+    { id: "poires",     name: "Poires",        emoji: "🍐", basePriceKg: 3.8 },
+    { id: "prunes",     name: "Prunes",        emoji: "🍑", basePriceKg: 4.2 },
+    { id: "abricots",   name: "Abricots",      emoji: "🍑", basePriceKg: 5.5 },
+    { id: "cerises",    name: "Cerises",       emoji: "🍒", basePriceKg: 7.5 },
+    { id: "raisin",     name: "Raisin",        emoji: "🍇", basePriceKg: 4.8 },
+    { id: "fraises",    name: "Fraises",       emoji: "🍓", basePriceKg: 7.0 },
+    { id: "framboises", name: "Framboises",    emoji: "🫐", basePriceKg: 12.0 },
+    { id: "mirabelles", name: "Mirabelles",    emoji: "🍑", basePriceKg: 6.5 },
+    { id: "kiwis",      name: "Kiwis",         emoji: "🥝", basePriceKg: 4.5 },
+    { id: "carottes",   name: "Carottes",      emoji: "🥕", basePriceKg: 2.8 },
+    { id: "pommesTerre",name: "Pommes terre",  emoji: "🥔", basePriceKg: 2.5 },
+    { id: "poireaux",   name: "Poireaux",      emoji: "🧅", basePriceKg: 3.2 },
+    { id: "courgettes", name: "Courgettes",    emoji: "🥒", basePriceKg: 3.0 },
+    { id: "tomates",    name: "Tomates",       emoji: "🍅", basePriceKg: 4.0 },
+    { id: "oignons",    name: "Oignons",       emoji: "🧅", basePriceKg: 2.4 },
+    { id: "chou",       name: "Chou",          emoji: "🥬", basePriceKg: 2.6 },
+    { id: "brocoli",    name: "Brocoli",       emoji: "🥦", basePriceKg: 4.0 },
+    { id: "aubergines", name: "Aubergines",    emoji: "🍆", basePriceKg: 3.6 },
+    { id: "radis",      name: "Radis",         emoji: "🥗", basePriceKg: 3.0 },
   ];
 
   const PERSONALITIES = {
-    "Elwëna": {
-      penalties: { error: -1, timeout: -1 },
-      fastBonus: 1,
-      fastThreshold: 15,
-      phrases: {
-        happy: ["Super ! Merci, tout est parfait !", "Top, tu calcules vite !"],
-        unhappy: ["Oh, je crois que tu t’es trompé...", "Oups, ce n’était pas ça."],
-        timeout: ["C’était un peu long, mais merci.", "La prochaine fois, un peu plus vite."]
-      }
-    },
-    "Marivelle": {
-      penalties: { error: -1, timeout: 0 },
-      fastBonus: 1,
-      fastThreshold: 20,
-      phrases: {
-        happy: ["Merci, c’est tout bon.", "Parfait, je vais pouvoir cuisiner."],
-        unhappy: ["On réessaiera, ce n’est pas grave.", "Je te fais confiance pour la prochaine."],
-        timeout: ["Tu as pris ton temps, mais pas de souci.", "Je ne suis pas pressée."]
-      }
-    },
-    "Bragoline": {
-      penalties: { error: -2, timeout: -2 },
-      fastBonus: 1,
-      fastThreshold: 15,
-      phrases: {
-        happy: ["Hm. C’est juste. Tu t’améliores.", "Bien, les comptes sont bons."],
-        unhappy: ["Ce n’est pas sérieux.", "On ne joue pas avec les chiffres."],
-        timeout: ["Beaucoup trop long !", "Je n’aime pas quand ça traîne."]
-      }
-    },
-    "Théolan": {
-      penalties: { error: -1, timeout: -2 },
-      fastBonus: 2,
-      fastThreshold: 10,
-      phrases: {
-        happy: ["Yes, rapide et précis, parfait !", "Nickel, je file, merci !"],
-        unhappy: ["Aïe, ça ne va pas trop là...", "Oups, je suis déjà en retard !"],
-        timeout: ["Laisse tomber, j’ai perdu du temps...", "Ouch, trop long pour moi !"]
-      }
-    },
-    "Borlak": {
-      penalties: { error: -1, timeout: -1 },
-      fastBonus: 1,
-      fastThreshold: 45,
-      phrases: {
-        happy: ["Parfait, je vais bien manger !", "Super, tout est bon, merci."],
-        unhappy: ["On s’est emmêlé, ça arrive.", "Ce n’est pas ça, mais j’ai connu pire."],
-        timeout: ["Tu m’as donné faim à attendre !", "Un peu long, hein..."]
-      }
-    },
-    "Vandorim": {
-      penalties: { error: -2, timeout: -1 },
-      fastBonus: 1,
-      fastThreshold: 15,
-      phrases: {
-        happy: ["Bien. Les chiffres sont justes.", "Impeccable, tu as l’œil."],
-        unhappy: ["On ne me trompe pas.", "Inacceptable, jeune vendeur."],
-        timeout: ["Tu réfléchis trop longtemps.", "Le temps, c’est précieux."]
-      }
-    }
+    "Elwëna": { trait: "Patiente", penalties: { error: -1, timeout: -1 }, fastBonus: 1, fastThreshold: 15, phrases: { happy: ["Super ! Merci !", "Top !"], unhappy: ["Oh mince...", "Erreur..."], timeout: ["Un peu long...", "Dommage."] } },
+    "Marivelle": { trait: "Compréhensive", penalties: { error: -1, timeout: 0 }, fastBonus: 1, fastThreshold: 20, phrases: { happy: ["Merci bien.", "Parfait."], unhappy: ["Pas grave.", "Oups."], timeout: ["Pas de souci.", "Tranquille."] } },
+    "Bragoline": { trait: "Exigeante", penalties: { error: -2, timeout: -2 }, fastBonus: 1, fastThreshold: 15, phrases: { happy: ["C'est juste.", "Bien."], unhappy: ["Pas sérieux !", "Non !"], timeout: ["Trop long !", "Dépêche !"] } },
+    "Théolan": { trait: "Pressé", penalties: { error: -1, timeout: -2 }, fastBonus: 2, fastThreshold: 10, phrases: { happy: ["Rapide, cool !", "Yes !"], unhappy: ["Aïe...", "Raté..."], timeout: ["Trop lent...", "J'y vais..."] } },
+    "Borlak": { trait: "Bon vivant", penalties: { error: -1, timeout: -1 }, fastBonus: 1, fastThreshold: 45, phrases: { happy: ["Miam !", "Super !"], unhappy: ["Bof...", "Erreur."], timeout: ["J'ai faim...", "Long..."] } },
+    "Vandorim": { trait: "Strict", penalties: { error: -2, timeout: -1 }, fastBonus: 1, fastThreshold: 15, phrases: { happy: ["Correct.", "Bien."], unhappy: ["Inacceptable.", "Faux."], timeout: ["Temps perdu.", "Retard."] } }
   };
 
   const CLIENT_SLOTS = [
@@ -747,40 +765,34 @@
   let satisfaction = INITIAL_SATISFACTION;
   let money = 0;
   let xpTotal = 0;
-  let ordersDoneThisRun = 0;
   let ordersDoneThisLevel = 0;
   let bestScore = 0;
-
   let currentOrder = null;
   let stage = "total";
   let timer = null;
   let timeLeft = TIME_PER_ORDER;
   let orderStartTime = 0;
+  let timeTakenLastOrder = 0;
   let hadErrorThisOrder = false;
   let orderTimedOut = false;
-
-  let currentClientName = "Client";
-  let currentClientAvatar = "🧑‍🌾";
-  let currentClientAvatarIndex = 1;
-  let lastClientSlotIndex = -1;
+  let currentClientIndex = 0;
+  let nextClientIndex = 0; 
+  let justLeveledUp = false;
 
   // DOM Elements
   const uiHearts = document.getElementById("ui-hearts");
   const uiMoney = document.getElementById("ui-money");
-  // const uiLevel = document.getElementById("ui-level"); // Removed in favor of header level
   const uiLevelHeader = document.getElementById("ui-level-header");
   const uiXPBar = document.getElementById("ui-xp-bar");
   const uiTimerText = document.getElementById("ui-timer-text");
   const uiTimerBar = document.getElementById("ui-timer-bar");
-
   const uiOrderList = document.getElementById("ui-order-list");
   const uiQuestionText = document.getElementById("ui-question-text");
   const uiChangeSummary = document.getElementById("ui-change-summary");
   const uiPropositions = document.getElementById("ui-propositions");
-  const uiInputRow = document.getElementById("ui-input-row");
-  const uiAnswerInput = document.getElementById("ui-answer-input");
-  const uiAnswerBtn = document.getElementById("ui-answer-btn");
   const uiFeedback = document.getElementById("ui-feedback");
+  const uiDigitInputs = document.getElementById("ui-digit-inputs");
+  const uiDigitOkBtn = document.getElementById("ui-digit-ok-btn");
 
   const overlayStart = document.getElementById("overlay-start");
   const overlayOrder = document.getElementById("overlay-order");
@@ -788,24 +800,28 @@
   const btnStart = document.getElementById("btn-start");
   const btnRestart = document.getElementById("btn-restart");
   const btnNextOrder = document.getElementById("btn-next-order");
+  const btnStopGame = document.getElementById("btn-stop-game");
 
   const endMoney = document.getElementById("end-money");
   const endLevel = document.getElementById("end-level");
-  // const endBestScore = document.getElementById("end-best-score");
   const endXP = document.getElementById("end-xp");
 
   const orderResultStatus = document.getElementById("order-result-status");
-  const orderResultTotal = document.getElementById("order-result-total");
-  const orderResultGiven = document.getElementById("order-result-given");
-  const orderResultChange = document.getElementById("order-result-change");
   const orderResultPhrase = document.getElementById("order-result-phrase");
   const orderResultDiff = document.getElementById("order-result-diff");
+  const orderResultChange = document.getElementById("order-result-change");
+  const orderResultTime = document.getElementById("order-result-time");
+  const orderResultProgress = document.getElementById("order-result-progress");
+  const orderLevelupBadge = document.getElementById("order-levelup-badge");
+
+  const nextClientEmoji = document.getElementById("next-client-emoji");
+  const nextClientName = document.getElementById("next-client-name");
+  const nextClientTrait = document.getElementById("next-client-trait");
 
   const uiClientName = document.getElementById("ui-client-name");
   const uiClientText = document.getElementById("ui-client-text");
   const uiClientAvatarImg = document.getElementById("ui-client-avatar-img");
   const uiClientAvatarEmoji = document.getElementById("ui-client-avatar-emoji");
-
   const uiCalcImg = document.getElementById("ui-calc-img");
   const uiCalcEmoji = document.getElementById("ui-calc-emoji");
   const startBestScore = document.getElementById("start-best-score");
@@ -826,15 +842,11 @@
     if (best) bestScore = parseFloat(best) || 0;
     if (xp) xpTotal = parseInt(xp, 10) || 0;
   }
-
   function savePersistentData() {
     localStorage.setItem("marche_best_score", String(bestScore));
     localStorage.setItem("marche_total_xp", String(xpTotal));
   }
-
-  function refreshStartMenu() {
-    startBestScore.textContent = formatMoney(bestScore);
-  }
+  function refreshStartMenu() { startBestScore.textContent = formatMoney(bestScore); }
 
   function updateHearts() {
     uiHearts.innerHTML = "";
@@ -848,9 +860,6 @@
   function updateGauges() {
     uiMoney.textContent = formatMoney(money);
     if(uiLevelHeader) uiLevelHeader.textContent = level;
-    // uiBestScore.textContent = formatMoney(bestScore); // Removed from top bar
-    
-    // XP
     const xpPercent = Math.min(100, (xpTotal % 100));
     uiXPBar.style.width = xpPercent + "%";
   }
@@ -863,17 +872,36 @@
 
   function clearQuestionUI() {
     uiPropositions.innerHTML = "";
-    uiInputRow.style.display = "none";
+    uiDigitInputs.style.display = "none"; // Cacher l'input par défaut
     uiFeedback.textContent = "";
     uiFeedback.className = "feedback";
-    uiAnswerInput.value = "";
     uiChangeSummary.style.display = "none";
     uiChangeSummary.innerHTML = "";
+    
+    // Reset digit inputs
+    document.getElementById("d-100").value = 0;
+    document.getElementById("d-10").value = 0;
+    document.getElementById("d-1").value = 0;
+    document.getElementById("d-01").value = 0;
+    document.getElementById("d-001").value = 0;
   }
 
   function setFeedback(text, type) {
     uiFeedback.textContent = text;
     uiFeedback.className = "feedback " + (type || "");
+  }
+
+  // --- Helpers pour le nouvel input ---
+  function getDigitInputValue() {
+     const d100 = parseInt(document.getElementById("d-100").value) || 0;
+     const d10 = parseInt(document.getElementById("d-10").value) || 0;
+     const d1 = parseInt(document.getElementById("d-1").value) || 0;
+     const d01 = parseInt(document.getElementById("d-01").value) || 0;
+     const d001 = parseInt(document.getElementById("d-001").value) || 0;
+     
+     // Reconstruction du nombre
+     let val = (d100 * 100) + (d10 * 10) + d1 + (d01 * 0.1) + (d001 * 0.01);
+     return round2(val);
   }
 
   function buildOrderSentence(order) {
@@ -886,12 +914,12 @@
   }
 
   function updateClientUI(order) {
-    uiClientName.textContent = currentClientName;
-    uiClientAvatarEmoji.textContent = currentClientAvatar;
-    const idx = currentClientAvatarIndex || 1;
+    const slot = CLIENT_SLOTS[currentClientIndex];
+    uiClientName.textContent = slot.name;
+    uiClientAvatarEmoji.textContent = slot.emoji;
     uiClientAvatarImg.onload = () => { uiClientAvatarImg.style.display = "block"; uiClientAvatarEmoji.style.display = "none"; };
     uiClientAvatarImg.onerror = () => { uiClientAvatarImg.style.display = "none"; uiClientAvatarEmoji.style.display = "flex"; };
-    uiClientAvatarImg.src = "assets/clients/client" + idx + ".png";
+    uiClientAvatarImg.src = "assets/clients/client" + slot.index + ".png";
     uiClientText.textContent = buildOrderSentence(order);
   }
 
@@ -930,7 +958,6 @@
       const subTotal = round2(kg * prod.priceKg);
       items.push({ product: prod, grams, subTotal });
     }
-
     let total = 0;
     items.forEach(it => total += it.subTotal);
     total = round2(total);
@@ -945,31 +972,21 @@
     order.items.forEach(it => {
       const div = document.createElement("div");
       div.className = "order-item";
-      
       const iconWrapper = document.createElement("div");
       iconWrapper.className = "product-icon-wrapper";
       const img = document.createElement("img");
       img.className = "product-icon";
       img.src = "assets/produits/" + it.product.id + ".png";
-      img.alt = it.product.emoji;
-      // Fallback emoji
       img.onerror = () => { img.style.display='none'; iconWrapper.innerHTML='<span class="emoji">'+it.product.emoji+'</span>'; };
-      
       iconWrapper.appendChild(img);
-
       const left = document.createElement("div");
       left.className = "order-main";
-
       const top = document.createElement("div");
       top.className = "order-line-top";
       top.textContent = it.product.name;
-
       const bottom = document.createElement("div");
       bottom.className = "order-line-bottom";
-      const priceKgText = it.product.priceKg.toFixed(2).replace(".", ",") + " €/kg";
-      const subTotalText = formatMoney(it.subTotal);
-      bottom.textContent = `${it.grams}g · ${subTotalText}`;
-
+      bottom.textContent = `${it.grams}g · ${formatMoney(it.subTotal)}`;
       left.appendChild(top);
       left.appendChild(bottom);
       div.appendChild(iconWrapper);
@@ -998,21 +1015,12 @@
   }
 
   function getPersonality() {
-    return PERSONALITIES[currentClientName] || {
-      penalties: { error: -1, timeout: -1 },
-      fastBonus: 1,
-      fastThreshold: GLOBAL_FAST_THRESHOLD,
-      phrases: {
-        happy: ["Merci !", "Parfait !"],
-        unhappy: ["Ce n’était pas correct.", "On réessaiera."],
-        timeout: ["C’était un peu long.", "Plus vite la prochaine fois."]
-      }
-    };
+    return PERSONALITIES[CLIENT_SLOTS[currentClientIndex].name];
   }
 
   function applyPenalty(type) {
     const p = getPersonality();
-    const delta = (p.penalties && p.penalties[type]) || (type === "timeout" ? -1 : -1);
+    const delta = (p.penalties && p.penalties[type]) || -1;
     satisfaction = Math.max(MIN_SATISFACTION, satisfaction + delta);
   }
 
@@ -1025,11 +1033,11 @@
     else showOrderResultOverlay("timeout", false);
   }
 
-  function isMultipleChoiceLevel(lvl) { return lvl <= 6; }
+  // --- LOGIQUE QCM / INPUT ---
   function propositionsCountForLevel(lvl) {
     if (lvl <= 3) return 4;
-    if (lvl <= 6) return 4; // Reduced to 4 for mobile layout (2x2 grid)
-    return 0;
+    if (lvl <= 6) return 6; // Changé de 4 à 6 comme demandé
+    return 0; // 0 = Input Manuel
   }
 
   function buildPropositions(correctValue) {
@@ -1056,7 +1064,10 @@
     clearQuestionUI();
     uiQuestionText.textContent = "Quel est le TOTAL ?";
 
-    if (isMultipleChoiceLevel(level)) {
+    const count = propositionsCountForLevel(level);
+    if (count > 0) {
+      // MODE QCM
+      uiPropositions.style.display = "grid"; // Show grid
       const props = buildPropositions(currentOrder.total);
       props.forEach(val => {
         const btn = document.createElement("button");
@@ -1066,12 +1077,11 @@
         uiPropositions.appendChild(btn);
       });
     } else {
-      uiInputRow.style.display = "flex";
-      uiAnswerInput.placeholder = "Total (ex: 12.50)";
-      uiAnswerBtn.onclick = () => {
-        const val = parseFloat(uiAnswerInput.value.replace(",", "."));
-        if (isNaN(val)) { setFeedback("Nombre invalide", "err"); return; }
-        handleAnswerTotal(round2(val));
+      // MODE INPUT 5 CASES
+      uiPropositions.style.display = "none";
+      uiDigitInputs.style.display = "flex";
+      uiDigitOkBtn.onclick = () => {
+        handleAnswerTotal(getDigitInputValue());
       };
     }
   }
@@ -1080,20 +1090,16 @@
     stage = "change";
     clearQuestionUI();
     uiQuestionText.textContent = "Rends la MONNAIE :";
-
+    
     uiChangeSummary.innerHTML = `
-      <div class="change-tile">
-        <div class="label">Ticket</div>
-        <div class="value">${formatMoney(currentOrder.total)}</div>
-      </div>
-      <div class="change-tile">
-        <div class="label">Donné</div>
-        <div class="value">${formatMoney(currentOrder.clientCash)}</div>
-      </div>
+      <div class="change-tile"><div class="label">Ticket</div><div class="value">${formatMoney(currentOrder.total)}</div></div>
+      <div class="change-tile"><div class="label">Donné</div><div class="value">${formatMoney(currentOrder.clientCash)}</div></div>
     `;
     uiChangeSummary.style.display = "flex";
 
-    if (isMultipleChoiceLevel(level)) {
+    const count = propositionsCountForLevel(level);
+    if (count > 0) {
+      uiPropositions.style.display = "grid";
       const props = buildPropositions(currentOrder.change);
       props.forEach(val => {
         const btn = document.createElement("button");
@@ -1103,13 +1109,10 @@
         uiPropositions.appendChild(btn);
       });
     } else {
-      uiInputRow.style.display = "flex";
-      uiAnswerInput.placeholder = "Rendre (ex: 3.50)";
-      uiAnswerInput.value = "";
-      uiAnswerBtn.onclick = () => {
-        const val = parseFloat(uiAnswerInput.value.replace(",", "."));
-        if (isNaN(val)) { setFeedback("Nombre invalide", "err"); return; }
-        handleAnswerChange(round2(val));
+      uiPropositions.style.display = "none";
+      uiDigitInputs.style.display = "flex";
+      uiDigitOkBtn.onclick = () => {
+        handleAnswerChange(getDigitInputValue());
       };
     }
   }
@@ -1124,10 +1127,7 @@
       hadErrorThisOrder = true;
       setFeedback("❌ Erreur de calcul...", "err");
       updateHearts();
-      if (satisfaction <= 0) {
-        if (timer) clearInterval(timer);
-        setTimeout(endGame, 600);
-      }
+      if (satisfaction <= 0) { if (timer) clearInterval(timer); setTimeout(endGame, 600); }
     }
   }
 
@@ -1136,7 +1136,9 @@
     if (Math.abs(value - currentOrder.change) < 0.01) {
       if (timer) { clearInterval(timer); timer = null; }
       const now = performance.now() / 1000;
-      const elapsed = Math.min(TIME_PER_ORDER, Math.round(now - orderStartTime));
+      timeTakenLastOrder = Math.round(now - orderStartTime);
+      const elapsed = Math.min(TIME_PER_ORDER, timeTakenLastOrder);
+      
       const p = getPersonality();
       const fastThreshold = p.fastThreshold || GLOBAL_FAST_THRESHOLD;
       const fastBonus = p.fastBonus || 0;
@@ -1152,14 +1154,17 @@
       money = round2(money + currentOrder.total);
       const xpGain = Math.max(1, Math.round(currentOrder.total));
       xpTotal += xpGain;
-      ordersDoneThisRun++;
       ordersDoneThisLevel++;
 
+      justLeveledUp = false;
       if (ordersDoneThisLevel >= ORDERS_PER_LEVEL && level < MAX_LEVEL) {
         level++;
         ordersDoneThisLevel = 0;
-        setFeedback("⬆️ Niveau " + level + " !", "ok");
+        justLeveledUp = true;
       }
+
+      // Préparer le prochain client AVANT d'afficher la popup
+      pickNextClient();
 
       updateHearts();
       updateGauges();
@@ -1171,21 +1176,39 @@
       hadErrorThisOrder = true;
       setFeedback("❌ Mauvaise monnaie...", "err");
       updateHearts();
-      if (satisfaction <= 0) {
-        if (timer) clearInterval(timer);
-        setTimeout(endGame, 600);
-      }
+      if (satisfaction <= 0) { if (timer) clearInterval(timer); setTimeout(endGame, 600); }
     }
+  }
+
+  function pickNextClient() {
+    // Choisir un client différent du courant
+    let idx;
+    if (CLIENT_SLOTS.length === 1) idx = 0;
+    else {
+      do { idx = randInt(0, CLIENT_SLOTS.length - 1); } while (idx === currentClientIndex);
+    }
+    nextClientIndex = idx;
   }
 
   function showOrderResultOverlay(resultType, wasFast) {
     if (!currentOrder) return;
-    orderResultTotal.textContent = formatMoney(currentOrder.total);
-    orderResultGiven.textContent = formatMoney(currentOrder.clientCash);
-    orderResultChange.textContent = formatMoney(currentOrder.change);
     const p = getPersonality();
     let phraseList, statusText;
 
+    // Badge Niveau
+    if (justLeveledUp) {
+        orderLevelupBadge.style.display = "inline-block";
+        orderLevelupBadge.textContent = "NIVEAU SUIVANT ! (Niv " + level + ") ⬆️";
+    } else {
+        orderLevelupBadge.style.display = "none";
+    }
+
+    // Stats
+    orderResultChange.textContent = formatMoney(currentOrder.change);
+    orderResultTime.textContent = timeTakenLastOrder + "s";
+    orderResultProgress.textContent = ordersDoneThisLevel + "/" + ORDERS_PER_LEVEL;
+
+    // Phrases
     if (resultType === "timeout") {
       phraseList = p.phrases.timeout;
       statusText = "Trop tard...";
@@ -1196,11 +1219,11 @@
       phraseList = p.phrases.happy;
       statusText = wasFast ? "Parfait !" : "Réussi !";
     }
-
     const phrase = (phraseList && phraseList.length) ? phraseList[randInt(0, phraseList.length - 1)] : "";
     orderResultStatus.textContent = statusText;
     orderResultPhrase.textContent = "« " + phrase + " »";
 
+    // Diff
     let satisfactionChange = 0;
     if (resultType === "timeout") satisfactionChange = p.penalties.timeout || -1;
     else if (hadErrorThisOrder) satisfactionChange = p.penalties.error || -1;
@@ -1209,25 +1232,25 @@
     let cls = "order-diff neutral";
     if (satisfactionChange > 0) cls = "order-diff gain";
     if (satisfactionChange < 0) cls = "order-diff loss";
-    
     orderResultDiff.className = cls;
     orderResultDiff.textContent = satisfactionChange > 0 ? `+${satisfactionChange} ❤` : satisfactionChange < 0 ? `${satisfactionChange} ❤` : `0 ❤`;
+
+    // Next Client Preview
+    const nextSlot = CLIENT_SLOTS[nextClientIndex];
+    const nextP = PERSONALITIES[nextSlot.name];
+    nextClientEmoji.textContent = nextSlot.emoji;
+    nextClientName.textContent = nextSlot.name;
+    nextClientTrait.textContent = nextP.trait;
+
     overlayOrder.style.display = "flex";
   }
 
   function nextOrder() {
     if (satisfaction <= 0) { endGame(); return; }
     overlayOrder.style.display = "none";
-    let idx;
-    if (CLIENT_SLOTS.length === 1) idx = 0;
-    else {
-      do { idx = randInt(0, CLIENT_SLOTS.length - 1); } while (idx === lastClientSlotIndex);
-    }
-    lastClientSlotIndex = idx;
-    const slot = CLIENT_SLOTS[idx];
-    currentClientName = slot.name;
-    currentClientAvatar = slot.emoji;
-    currentClientAvatarIndex = slot.index;
+    
+    // Apply next client
+    currentClientIndex = nextClientIndex;
 
     currentOrder = generateOrder();
     hadErrorThisOrder = false;
@@ -1245,11 +1268,13 @@
     level = 1;
     satisfaction = INITIAL_SATISFACTION;
     money = 0;
-    ordersDoneThisRun = 0;
     ordersDoneThisLevel = 0;
     hadErrorThisOrder = false;
     orderTimedOut = false;
 
+    // Pick first client
+    currentClientIndex = randInt(0, CLIENT_SLOTS.length - 1);
+    
     updateHearts();
     updateGauges();
     updateTimerUI();
@@ -1258,7 +1283,18 @@
     overlayStart.style.display = "none";
     overlayEnd.style.display = "none";
     overlayOrder.style.display = "none";
-    setTimeout(nextOrder, 600);
+    
+    setTimeout(() => {
+        currentOrder = generateOrder();
+        displayOrder(currentOrder);
+        updateClientUI(currentOrder);
+        askTotal();
+        startTimer();
+    }, 600);
+  }
+
+  function stopGame() {
+      endGame();
   }
 
   function endGame() {
@@ -1270,7 +1306,6 @@
     refreshStartMenu();
     endMoney.textContent = formatMoney(money);
     endLevel.textContent = level;
-    // endBestScore.textContent = formatMoney(bestScore);
     endXP.textContent = xpTotal + " XP";
     overlayEnd.style.display = "flex";
     overlayOrder.style.display = "none";
@@ -1279,7 +1314,9 @@
   btnStart.addEventListener("click", startGame);
   btnRestart.addEventListener("click", startGame);
   btnNextOrder.addEventListener("click", nextOrder);
+  btnStopGame.addEventListener("click", stopGame);
 
+  // Init
   loadPersistentData();
   refreshStartMenu();
   updateHearts();
